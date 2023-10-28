@@ -8,4 +8,4 @@ def main(option: AppOptionString) -> None:
 
 
 if __name__ == "__main__":
-    main(option=AppOption.TKINTER)
+    main(option=AppOption.FLET)

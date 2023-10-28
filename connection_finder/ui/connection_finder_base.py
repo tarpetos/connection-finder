@@ -1,6 +1,6 @@
 import requests
+from typing import Callable, Any
 from abc import ABC, abstractmethod
-
 from ..constants import REQUEST_URL, SUCCESSFUL_REQUEST_CODE
 
 
@@ -16,6 +16,10 @@ def is_connected() -> bool:
 class ConnectionFinder(ABC):
     def __init__(self):
         self.search_active = None
+
+    @abstractmethod
+    def build_button(self, text: str, button_callback: Callable) -> Any:
+        raise NotImplementedError("Subclasses must implement this method.")
 
     def start_search(self, *args) -> None:
         self.search_active = True

@@ -1,5 +1,5 @@
 import flet as ft
-
+from typing import Callable
 from .connection_finder_base import ConnectionFinder
 from ..constants import START_BUTTON_TEXT, STOP_BUTTON_TEXT, VOICE_MESSAGE, APP_TITLE
 
@@ -10,22 +10,19 @@ class FletApp(ft.UserControl, ConnectionFinder):
 
     def __init__(self, voice_message: ft.Audio) -> None:
         super().__init__()
-        self.start_button = ft.ElevatedButton(
-            text=START_BUTTON_TEXT,
-            on_click=self.start_search,
-            width=self.BUTTON_WIDTH,
-            height=self.BUTTON_HEIGHT,
-        )
-
-        self.stop_button = ft.ElevatedButton(
-            text=STOP_BUTTON_TEXT,
-            on_click=self.stop_search,
-            width=self.BUTTON_WIDTH,
-            height=self.BUTTON_HEIGHT,
-        )
+        self.start_button = self.build_button(text=START_BUTTON_TEXT, button_callback=self.start_search)
+        self.stop_button = self.build_button(text=STOP_BUTTON_TEXT, button_callback=self.stop_search)
 
         self.search_active = None
         self.sound = voice_message
+
+    def build_button(self, text: str, button_callback: Callable) -> ft.ElevatedButton:
+        return ft.ElevatedButton(
+            text=text,
+            on_click=button_callback,
+            width=self.BUTTON_WIDTH,
+            height=self.BUTTON_HEIGHT,
+        )
 
     def start_button_configure(self, disable: bool) -> None:
         self.start_button.disabled = disable
@@ -43,6 +40,7 @@ class FletApp(ft.UserControl, ConnectionFinder):
     def build_column(self) -> ft.Column:
         return ft.Column(
             [self.start_button, self.stop_button],
+            horizontal_alignment=ft.CrossAxisAlignment.STRETCH
         )
 
     def build(self) -> ft.Column:

@@ -1,0 +1,4 @@
+flet~=0.10.3
+requests~=2.31.0
+pygame~=2.5.2
+black~=23.10.1

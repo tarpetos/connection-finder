@@ -46,25 +46,30 @@ follow the steps below:
 
 # Examples
 
-## Tkinter UI
-
-<div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
-  <img src="examples/tkinter.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
-</div>
-
----
-
-## Flet UI
-
-<div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
-  <img src="examples/flet.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
-</div>
-
-## Kivy UI
-
-<div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
-  <img src="examples/kivy.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
-</div>
+<table>
+  <tr>
+    <th>Tkinter UI</th>
+    <th>Kivy UI</th>
+    <th>Flet UI</th>
+  </tr>
+  <tr>
+    <td>
+      <div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
+        <img src="examples/tkinter.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+      </div>
+    </td>
+    <td>
+      <div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
+        <img src="examples/kivy.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+      </div>
+    </td>
+    <td>
+      <div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
+        <img src="examples/flet.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+      </div>
+    </td>
+  </tr>
+</table>
 
 # Licensing
 

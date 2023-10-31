@@ -1,17 +1,28 @@
 import flet as ft
 from typing import Callable
-from .connection_finder_base import ConnectionFinder
-from ..constants import START_BUTTON_TEXT, STOP_BUTTON_TEXT, VOICE_MESSAGE, APP_TITLE
+from .connection_finder_base import _ConnectionFinder
+from ..constants import (
+    START_BUTTON_TEXT,
+    STOP_BUTTON_TEXT,
+    VOICE_MESSAGE,
+    APP_TITLE,
+    WINDOW_MIN_WIDTH,
+    WINDOW_MIN_HEIGHT,
+)
 
 
-class FletApp(ft.UserControl, ConnectionFinder):
+class FletApp(ft.UserControl, _ConnectionFinder):
     BUTTON_WIDTH = 400
     BUTTON_HEIGHT = 100
 
     def __init__(self, voice_message: ft.Audio) -> None:
         super().__init__()
-        self.start_button = self.build_button(text=START_BUTTON_TEXT, button_callback=self.start_search)
-        self.stop_button = self.build_button(text=STOP_BUTTON_TEXT, button_callback=self.stop_search)
+        self.start_button = self.build_button(
+            text=START_BUTTON_TEXT, button_callback=self.start_search
+        )
+        self.stop_button = self.build_button(
+            text=STOP_BUTTON_TEXT, button_callback=self.stop_search
+        )
 
         self.search_active = None
         self.sound = voice_message
@@ -40,7 +51,7 @@ class FletApp(ft.UserControl, ConnectionFinder):
     def build_column(self) -> ft.Column:
         return ft.Column(
             [self.start_button, self.stop_button],
-            horizontal_alignment=ft.CrossAxisAlignment.STRETCH
+            horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
         )
 
     def build(self) -> ft.Column:
@@ -53,6 +64,8 @@ def run_app(page: ft.Page) -> None:
     center_alignment = "center"
     page.horizontal_alignment = center_alignment
     page.vertical_alignment = center_alignment
+    page.window_min_width = WINDOW_MIN_WIDTH
+    page.window_min_height = WINDOW_MIN_HEIGHT
     sound = ft.Audio(src=VOICE_MESSAGE)
     page.overlay.append(sound)
     page.update()

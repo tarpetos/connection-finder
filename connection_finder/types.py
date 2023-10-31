@@ -1,10 +1,12 @@
 from enum import Enum
-from typing import Type, Literal
+from typing import Type, Literal, Dict, Callable
 
 
-class AppOption(Enum):
+class UIOption(Enum):
     FLET = "flet"
     TKINTER = "tkinter"
+    KIVY = "kivy"
 
 
-AppOptionString: Type = Literal[AppOption.FLET, AppOption.TKINTER]
+UIOptionString: Type = Literal[UIOption.FLET, UIOption.TKINTER, UIOption.KIVY]
+UIOptions: Type = Dict[UIOptionString, Callable]

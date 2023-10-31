@@ -10,9 +10,14 @@ connection. If a connection is found, it plays a sound and enables the button. I
 disables the button and continuously sends connection requests until a connection is established. The "Stop" button
 allows you to halt the search and stop any sound that may be playing.
 
+## Purpose
+
+The point was to implement the same functionality with a similar appearance of the application, but using different 
+graphics libraries. Therefore, the project uses 3 graphic libraries, between which you can easily switch.
+
 ## Usage
 
-You can choose between two different user interfaces (UI) for this application: Tkinter or Flet. To use the application,
+You can choose between two different user interfaces (UI) for this application: Tkinter, Flet or Kivy. To use the application,
 follow the steps below:
 
 1. **Install the required dependencies:**
@@ -20,21 +25,21 @@ follow the steps below:
    pip install requirements.txt
    ```
 
-2. **Import the necessary components in your Python scrip:**
+2. **Import the necessary components in your Python script:**
    ```python
-   from connection_finder import AppStarter
-   from connection_finder.types import AppOptionString, AppOption
+   from connection_finder import ConnectionFinder
+   from connection_finder.types import UIOptionString, UIOption
    ```
 
 3. **Define the main function in your script, which initializes and starts the application. Choose either
-   AppOption.TKINTER or AppOption.FLET to specify the UI you want to use:**
+   UIOption.TKINTER, UIOption.FLET or UIOption.KIVY to specify the UI you want to use:**
    ```python
-   def main(option: AppOptionString) -> None:
-       starter = AppStarter()
+   def main(option: UIOptionString) -> None:
+       starter = ConnectionFinder()
        starter.start(option)
    
    if __name__ == "__main__":
-       main(option=AppOption.TKINTER)  # Use AppOption.FLET to use the Flet UI
+       main(option=UIOption.TKINTER)  # Use UIOption.FLET or UIOption.KIVY to use the Flet or Kivy UI 
    ```
 
 4. Run your Python script, and the Internet Connection Finder application will be launched with the chosen UI.
@@ -53,6 +58,12 @@ follow the steps below:
 
 <div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
   <img src="examples/flet.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+</div>
+
+## Kivy UI
+
+<div style="text-align:center; border-radius: 5%; overflow: hidden; margin: 0 auto;">
+  <img src="examples/kivy.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
 </div>
 
 # Licensing

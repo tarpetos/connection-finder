@@ -1,11 +1,11 @@
-from connection_finder import AppStarter
-from connection_finder.types import AppOptionString, AppOption
+from connection_finder import ConnectionFinder
+from connection_finder.types import UIOptionString, UIOption
 
 
-def main(option: AppOptionString) -> None:
-    starter = AppStarter()
+def main(option: UIOptionString) -> None:
+    starter = ConnectionFinder()
     starter.start(option)
 
 
 if __name__ == "__main__":
-    main(option=AppOption.FLET)
+    main(option=UIOption.KIVY)

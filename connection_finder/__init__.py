@@ -1,3 +1,3 @@
-from .starter import AppStarter
+from .starter import ConnectionFinder
 
-__all__ = ("AppStarter",)
+__all__ = "ConnectionFinder"

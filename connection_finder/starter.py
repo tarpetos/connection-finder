@@ -1,12 +1,18 @@
-from .ui import flet_main, tkinter_main
-from .types import AppOption, AppOptionString
+from .ui import flet_main, tkinter_main, kivy_main
+from .types import UIOption, UIOptionString, UIOptions
 
 
-class AppStarter:
-    def start(self, app_selector: AppOptionString) -> None:
-        if app_selector == AppOption.FLET:
-            flet_main()
-        elif app_selector == AppOption.TKINTER:
-            tkinter_main()
-        else:
-            raise ValueError(f"Invalid app option! Should be on of the {AppOptionString}")
+class ConnectionFinder:
+    def start(self, app_selector: UIOptionString) -> None:
+        app_options: UIOptions = {
+            UIOption.FLET: flet_main,
+            UIOption.TKINTER: tkinter_main,
+            UIOption.KIVY: kivy_main,
+        }
+
+        select_ui = app_options.get(app_selector, None)
+        if select_ui is None:
+            raise ValueError(
+                f"Invalid app option! Should be on of the {UIOptionString}"
+            )
+        select_ui()

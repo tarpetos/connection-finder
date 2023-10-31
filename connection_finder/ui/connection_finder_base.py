@@ -13,7 +13,7 @@ def is_connected() -> bool:
         return False
 
 
-class ConnectionFinder(ABC):
+class _ConnectionFinder(ABC):
     def __init__(self):
         self.search_active = None
 
@@ -35,7 +35,7 @@ class ConnectionFinder(ABC):
         self.start_button_configure(disable=False)
         self.stop_sound()
 
-    def _check_connection(self) -> None:
+    def _check_connection(self, *args) -> None:
         if not self.search_active:
             return
 

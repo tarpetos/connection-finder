@@ -2,27 +2,41 @@ import os
 import pygame
 import tkinter as tk
 from typing import Callable
-from .connection_finder_base import ConnectionFinder
-from ..constants import START_BUTTON_TEXT, STOP_BUTTON_TEXT, APP_TITLE, ASSETS_FOLDER, VOICE_MESSAGE
+
+from .colors import (
+    MAIN_BG,
+    BUTTON_BG,
+    ACTIVE_BUTTON_BG,
+    DISABLED_BUTTON_FONT,
+    BUTTON_FONT,
+    ACTIVE_BUTTON_FONT,
+    DISABLED_BUTTON_BG,
+)
+from .connection_finder_base import _ConnectionFinder
+from ..constants import (
+    START_BUTTON_TEXT,
+    STOP_BUTTON_TEXT,
+    APP_TITLE,
+    ASSETS_FOLDER,
+    VOICE_MESSAGE,
+    WINDOW_MIN_WIDTH,
+    WINDOW_MIN_HEIGHT,
+)
 
 
-class TkinterApp(tk.Tk, ConnectionFinder):
-    BG_COLOR = "#1A1C1E"
-    BUTTON_BG_COLOR = "#202429"
-    ACTIVE_BUTTON_BG_COLOR = "#2D363F"
-    DISABLED_BUTTON_BG_COLOR = "#323436"
-    BUTTON_FONT_COLOR = "#9DC9FD"
-    ACTIVE_FONT_COLOR = "#9ECAFF"
-    DISABLED_FONT_COLOR = "#757678"
-
-    def __init__(self):
+class TkinterApp(tk.Tk, _ConnectionFinder):
+    def __init__(self) -> None:
         super().__init__()
 
-        self.configure(bg=self.BG_COLOR)
-        self.main_frame = tk.Frame(self, bg=self.BG_COLOR)
+        self.configure(bg=MAIN_BG)
+        self.main_frame = tk.Frame(self, bg=MAIN_BG)
 
-        self.start_button = self.build_button(text=START_BUTTON_TEXT, button_callback=self.start_search)
-        self.stop_button = self.build_button(text=STOP_BUTTON_TEXT, button_callback=self.stop_search)
+        self.start_button = self.build_button(
+            text=START_BUTTON_TEXT, button_callback=self.start_search
+        )
+        self.stop_button = self.build_button(
+            text=STOP_BUTTON_TEXT, button_callback=self.stop_search
+        )
 
         self.place_elements()
 
@@ -35,20 +49,20 @@ class TkinterApp(tk.Tk, ConnectionFinder):
             master=self.main_frame,
             text=text,
             command=button_callback,
-            background=self.BUTTON_BG_COLOR,
-            foreground=self.BUTTON_FONT_COLOR,
             relief=tk.FLAT,
-            highlightbackground=self.BUTTON_BG_COLOR,
-            activebackground=self.ACTIVE_BUTTON_BG_COLOR,
-            activeforeground=self.ACTIVE_FONT_COLOR,
-            disabledforeground=self.DISABLED_FONT_COLOR,
+            background=BUTTON_BG,
+            highlightbackground=BUTTON_BG,
+            activebackground=ACTIVE_BUTTON_BG,
+            disabledforeground=DISABLED_BUTTON_FONT,
+            foreground=BUTTON_FONT,
+            activeforeground=ACTIVE_BUTTON_FONT,
         )
 
     def start_button_configure(self, disable: bool) -> None:
         if disable:
-            self.start_button.configure(state=tk.DISABLED, bg=self.DISABLED_BUTTON_BG_COLOR)
+            self.start_button.configure(state=tk.DISABLED, bg=DISABLED_BUTTON_BG)
         else:
-            self.start_button.configure(state=tk.NORMAL, bg=self.BUTTON_BG_COLOR)
+            self.start_button.configure(state=tk.NORMAL, bg=BUTTON_BG)
 
     def play_sound(self) -> None:
         pygame.mixer.music.load(self.sound)
@@ -69,5 +83,5 @@ class TkinterApp(tk.Tk, ConnectionFinder):
 def tkinter_main() -> None:
     tkinter_app = TkinterApp()
     tkinter_app.wm_title(APP_TITLE)
-    tkinter_app.minsize(width=480, height=480)
+    tkinter_app.minsize(width=WINDOW_MIN_WIDTH, height=WINDOW_MIN_HEIGHT)
     tkinter_app.mainloop()

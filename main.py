@@ -8,4 +8,4 @@ def main(option: UIOptionString) -> None:
 
 
 if __name__ == "__main__":
-    main(option=UIOption.KIVY)
+    main(option=UIOption.FLET)

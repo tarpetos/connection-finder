@@ -13,6 +13,6 @@ class ConnectionFinder:
         select_ui = app_options.get(app_selector, None)
         if select_ui is None:
             raise ValueError(
-                f"Invalid app option! Should be on of the {UIOptionString}"
+                f"Invalid app option! Should be one of the {UIOptionString}"
             )
         select_ui()
